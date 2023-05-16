@@ -36,11 +36,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             ),
             // converts a list of answers to AnswerButtons using ...
             // ... is the spread operator -
-            ...currentQuestion.answers.map(
-              (item) {
+            ...currentQuestion.getShuffledAnswers().map(
+              (answer) {
                 return AnswerButton(
                   // returns list of answers
-                  answerText: item,
+                  answerText: answer,
                   onTapAnswer: () {},
                 );
               },
