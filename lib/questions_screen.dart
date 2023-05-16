@@ -29,21 +29,15 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           const SizedBox(
             height: 40,
           ),
-          AnswerButton(
-            answerText: currentQuestion.answers[0],
-            onTapAnswer: () {},
-          ),
-          AnswerButton(
-            answerText: currentQuestion.answers[1],
-            onTapAnswer: () {},
-          ),
-          AnswerButton(
-            answerText: currentQuestion.answers[2],
-            onTapAnswer: () {},
-          ),
-          AnswerButton(
-            answerText: currentQuestion.answers[3],
-            onTapAnswer: () {},
+          // converts a list of answers to AnswerButtons using ...
+          // ... is the spread operator -
+          ...currentQuestion.answers.map(
+            (item) {
+              return AnswerButton(
+                answerText: item,
+                onTapAnswer: () {},
+              );
+            },
           ),
         ],
       ),
