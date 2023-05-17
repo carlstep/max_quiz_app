@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen(this.startQuiz, {super.key});
@@ -20,9 +21,9 @@ class StartScreen extends StatelessWidget {
           const SizedBox(
             height: 80,
           ),
-          const Text(
+          Text(
             'Welcome to the Max Quiz App',
-            style: TextStyle(
+            style: GoogleFonts.rubik(
                 fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
@@ -34,9 +35,9 @@ class StartScreen extends StatelessWidget {
               Icons.arrow_forward_outlined,
               color: Colors.white70,
             ),
-            label: const Text(
+            label: Text(
               'Start Quiz',
-              style: TextStyle(
+              style: GoogleFonts.rubik(
                 color: Colors.white70,
                 fontSize: 18,
               ),

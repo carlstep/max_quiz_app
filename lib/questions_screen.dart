@@ -1,18 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:max_quiz_app/answer_button.dart';
 import 'package:max_quiz_app/data/questions.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen({super.key});
+  const QuestionsScreen({
+    super.key,
+    required this.onSelectAnswer,
+  });
+
+  final void Function(String answer) onSelectAnswer;
 
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
+  var currentQuestionIndex = 0;
+
+  void answerQuestion(String selectedAnswer) {
+    widget.onSelectAnswer(selectedAnswer);
+
+    setState(() {
+      currentQuestionIndex++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final currentQuestion = questions[0];
+    final currentQuestion = questions[currentQuestionIndex];
 
     return SizedBox(
       width: double.infinity,
@@ -25,9 +41,10 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             Text(
               // returns the questions
               currentQuestion.text,
-              style: const TextStyle(
+              style: GoogleFonts.poppins(
                 color: Colors.white70,
-                fontSize: 20,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
             ),
@@ -41,7 +58,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                 return AnswerButton(
                   // returns list of answers
                   answerText: answer,
-                  onTapAnswer: () {},
+                  onTapAnswer: () {
+                    answerQuestion(answer);
+                  },
                 );
               },
             ),
