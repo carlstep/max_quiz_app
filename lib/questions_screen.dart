@@ -55,12 +55,15 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             // ... is the spread operator -
             ...currentQuestion.getShuffledAnswers().map(
               (answer) {
-                return AnswerButton(
-                  // returns list of answers
-                  answerText: answer,
-                  onTapAnswer: () {
-                    answerQuestion(answer);
-                  },
+                return Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: AnswerButton(
+                    // returns list of answers
+                    answerText: answer,
+                    onTapAnswer: () {
+                      answerQuestion(answer);
+                    },
+                  ),
                 );
               },
             ),

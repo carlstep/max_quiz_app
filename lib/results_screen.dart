@@ -1,14 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:max_quiz_app/data/questions.dart';
-import 'package:max_quiz_app/questions_summary.dart';
+import 'package:max_quiz_app/questions_summary/questions_summary.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen({
     super.key,
     required this.chosenAnswers,
+    required this.onRestart,
   });
 
   final List<String> chosenAnswers;
+  final void Function() onRestart;
 
   List<Map<String, Object>> getSummaryData() {
     final List<Map<String, Object>> summary = [];
@@ -42,21 +46,33 @@ class ResultsScreen extends StatelessWidget {
           children: [
             Text(
               'You have answered $numCorrectQuestions out of $numTotalQuestions questions correctly',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white70,
                 fontSize: 20,
               ),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(
-              height: 30,
+              height: 40,
             ),
             QuestionsSummary(summaryData: summaryData),
             const SizedBox(
-              height: 30,
+              height: 40,
             ),
-            TextButton(
-              onPressed: () {},
-              child: const Text('Restart Quiz'),
+            TextButton.icon(
+              icon: const Icon(
+                Icons.refresh,
+                color: Colors.white70,
+                size: 30,
+              ),
+              label: const Text(
+                'Restart Quiz',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 20,
+                ),
+              ),
+              onPressed: onRestart,
             ),
           ],
         ),
